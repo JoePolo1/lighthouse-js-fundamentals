@@ -13,18 +13,19 @@ for a given start, end, and step parameter.
 */
 
 
-const school1 = "Elementary School"; // The next 3 lines define the different school options as variables
-const school2 = "Secondary School";
-const school3 = "Lighthouse Labs";
-function whichSchool(age) { 
-  if (age < 13) {
-    return school1;
-  } else if (age >= 13 && age <= 18) {
-    return school2;
+function range(start, end, step) {
+  let rangeArray = [];
+  if(step === undefined || end === undefined || start === undefined || step <= 0 || start > end) {
+    return rangeArray;
   } else {
-    return school3;
+    for (let i = start; i <= end; i += step) {
+
+    rangeArray.push(i);
+    }
+    return rangeArray;
   }
 }
-
-
-
+//below is test data to use to validate
+console.log(range(0, 10, 2));
+console.log(range(10, 30, 5));
+console.log(range(-5, 2, 3));

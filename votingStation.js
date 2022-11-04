@@ -27,3 +27,4 @@ function chooseStations (stations) {
 
 
 console.log(chooseStations(stations))
+
