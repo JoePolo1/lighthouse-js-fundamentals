@@ -69,3 +69,42 @@ const cars = [
 const speed = 38
 
 console.log(carPassing(cars, speed));
+
+/*For this challenge, we'll need to implement a function called judgeVegetable()
+that will decide which vegetable is best based on a given judging characteristic. 
+Our function will receive two parameters: a list of veggies(as an array of objects), and 
+a characteristic to judge the veggies by (in the case of a tomato, either redness or plumpness).
+
+Our function must return the name of the person who submitted (vegetables.submitter) the vegetable with the highest ranking in the provided category.
+
+*/
+
+const judgeVegetable = function (vegetables, metric) {
+  vegetables.sort((a, b) => a[metric] - b[metric])
+  return vegetables[vegetables.length - 1].submitter; //IMPORTANT - so minus one is just the spot of the highest sorted object, and then you're just calling the submitter of that object with this
+}
+
+
+//If we called the function with the following arguments, the return would be "Old Man Franklin"
+const vegetables = [
+  {
+    submitter: 'Old Man Franklin',
+    redness: 10,
+    plumpness: 5
+  },
+  {
+    submitter: 'Sally Tomato-Grower',
+    redness: 2,
+    plumpness: 8
+  },
+  {
+    submitter: 'Hamid Hamidson',
+    redness: 4,
+    plumpness: 3
+  }
+]
+
+const metric = 'redness'
+
+judgeVegetable(vegetables, metric)
+console.log(vegetables);

@@ -1,47 +1,69 @@
-/*
-The function, carPassing(cars, speed), takes in an array of car objects, and the speed 
-of a car as it passes the sensor. This function should create a new object with a property 
-called speed, and another property called time and add it to the cars array. 
-We can retrieve the current time, for setting the time property, by using the Date.now() function, 
-which is built into JavaScript!
+const calculateChange = function(total, cash) {
+  //calculating change to be returned
+  let change = cash - total;
+  //Creating empty object that will store change breakdown later
+  let objToReturn = {};
+  let obj = {
+    twentyDollar: 0,
+    tenDollar: 0, 
+    fiveDollar: 0,
+    twoDollar: 0,
+    oneDollar:0,
+    quarter: 0,
+    dime: 0,
+    nickel:0,
+    penny: 0,
 
-Our function should return an array that includes all of the elements in cars as well as our new element.
-
-Note
-We may need to use JavaScript's handy push() method to add our new object to the cars array. 
-Take a look at this previous exercise for a refresher.
-*/
-
-//IMPORTANT
-// we already have the new speed declared as 38 in the example below. We need to add that in 
-// with the current date and time as a new object into the existing array and the declared speed 
-// of 38 as listed below in the call. CARS is the name of the array
-
-const carPassing = function (cars, speed) {
-  let newCar = {
-    time: Date.now(),
-    speed: speed
+    calculate: function(change) {
+      while (change >= 2000) {
+        obj.twentyDollar += 1;
+        change -= 2000;
+      }
+      while (change >= 1000) {
+        obj.tenDollar += 1;
+        change -= 1000;
+      }
+      while (change >= 500) {
+        obj.fiveDollar += 1;
+        change -= 500;
+      }
+      while (change >= 200) {
+        obj.twoDollar += 1;
+        change -= 200; 
+      }
+      while (change >= 100) {
+        obj.oneDollar += 1;
+        change -= 100;
+      }
+      while (change >= 25) {
+        obj.quarter += 1;
+        change -= 25;
+      }
+      while (change >= 10 && change < 25) {
+        obj.dime += 1;
+        change -= 10;
+      } 
+      while (change >= 5 && change < 10) {
+        obj.nickel += 1;
+        change -= 5;
+      }
+      while (change >= 1 && change < 5) {
+        obj.penny += 1;
+        change -= 1;
+      }
+    }
   }
-  cars.push(newCar);
-  return cars; //INITIALLY I forgot to do this and the code returned UNDEFINED. You will always get UNDEFINED
-  // if you are not returning something
-}
 
-const cars = [
-  {
-    time: 1568329654807,
-    speed: 40,
-  },
-  {
-    time: 1568329821632,
-    speed: 42,
-  },
-  {
-    time: 1568331115463,
-    speed: 35
+  obj.calculate(change);
+  const keys = Object.keys(obj);
+  for (key of keys) {
+    if (obj[key] > 0 & key !== "calculate") {
+      objToReturn[key] = obj[key];
+    }
   }
-]
+  return objToReturn;
+};
 
-const speed = 38
-
-console.log(carPassing(cars, speed));
+console.log(calculateChange(1787, 2000));
+console.log(calculateChange(2623, 4000));
+console.log(calculateChange(501, 1000));
